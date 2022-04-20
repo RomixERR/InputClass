@@ -73,6 +73,45 @@ namespace HW8_List_XML
             } while (flag);
             return res;
         }
+        /// <summary>
+        /// Мой личный улучшенный метод пользовательского ввода с проверкой на пустой ввод
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="isAnNotEmptyLine"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static T Input<T>(out bool isAnEmptyLine, string msg = "")
+        {
+            T res = default(T);
+            bool flag = true;
+            isAnEmptyLine = true;
+            string s;
+            do
+            {
+                try
+                {
+                    Console.WriteLine(msg);
+                    //Object.ReferenceEquals(typeof(T), typeof(int)))
+                    s = Console.ReadLine();
+                    if (s.Equals(""))
+                    {
+                        flag = false;
+                    }
+                    else
+                    {
+                        isAnEmptyLine = false;
+                        res = (T)Convert.ChangeType(s, typeof(T));
+                        flag = false;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("НЕ КОРРЕКТНЫЙ ВВОД!!!");
+                }
+
+            } while (flag);
+            return res;
+        }
 
     }
 }
